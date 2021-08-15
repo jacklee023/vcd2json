@@ -62,10 +62,14 @@ class WaveExtractor:
             hier_list = []
             path_list = []
             path_dict = {}
-            while True:
-                line = fin.readline()
+            # while True:
+            #     line = fin.readline()
+            # modified by pyv
+            for line in fin.readlines():
+                line = line.strip()
                 if not line:
-                    raise EOFError('Can\'t find word "$enddefinitions".')
+                    continue
+                    # raise EOFError('Can\'t find word "$enddefinitions".')
                 words = line.split()
                 if words[0] == '$enddefinitions':
                     return path_list, path_dict
